@@ -1,36 +1,45 @@
 package it.footmanager.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "risposta_giocatore",
-       uniqueConstraints = @UniqueConstraint(columnNames = {"giocatore_id","quiz_id"}))
-@Getter @Setter @NoArgsConstructor
-public class RispostaGiocatore {
+@Table(name = "risposta_utente")
+@Getter
+@Setter
+@NoArgsConstructor
+public class RispostaUtente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_risposta")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "giocatore_id", nullable = false)
+    @Column(name = "data_risposta", nullable = false)
+    private LocalDateTime dataRisposta;
+
+    @Column(name = "tempo_impiegato_sec")
+    private Integer tempoImpiegatoSec;
+
+    @Column(name = "esito", nullable = false)
+    private boolean esito;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_giocatore")
     private Giocatore giocatore;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "quiz_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_quiz")
     private Quiz quiz;
 
-    @Column(name = "risposta_data", nullable = false, length = 1)
-    private String rispostaData;
-
-    @Column(nullable = false)
-    private boolean corretta;
-
-    @Column(name = "secondi_impiegati")
-    private Integer secondiImpiegati;
-
-    @Column(name = "risposto_il", nullable = false, updatable = false)
-    private LocalDateTime rispostoIl = LocalDateTime.now();
+    @PrePersist
+    protected void onCreate() {
+        if (dataRisposta == null) {
+            dataRisposta = LocalDateTime.now();
+        }
+    }
 }
