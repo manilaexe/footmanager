@@ -5,14 +5,16 @@ import lombok.*;
 
 @Entity
 @Table(name = "ruolo")
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class Ruolo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_ruolo")
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, unique = true, length = 30)
-    private RuoloNome nome;
+    @Column(name = "nome_ruolo", nullable = false, length = 50)
+    private String nome;
 }
