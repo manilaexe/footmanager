@@ -1,39 +1,45 @@
 package it.footmanager.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "messaggio")
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class Messaggio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_messaggio")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "mittente_id", nullable = false)
-    private Utente mittente;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "destinatario_id", nullable = false)
-    private Utente destinatario;
-
-    @Column(nullable = false, length = 200)
-    private String oggetto;
-
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(name = "testo", nullable = false, columnDefinition = "TEXT")
     private String testo;
 
-    @Column(name = "inviato_il", nullable = false, updatable = false)
-    private LocalDateTime inviatoIl = LocalDateTime.now();
+    @Column(name = "data_ora", nullable = false)
+    private LocalDateTime dataOra;
 
-    @Column(name = "letto_il")
-    private LocalDateTime lettoIl;
+    @Column(name = "stato", length = 20)
+    private String stato;
 
-    public boolean isLetto() {
-        return lettoIl != null;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_giocatore")
+    private Giocatore giocatore;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_allenatore")
+    private Allenatore allenatore;
+
+    @PrePersist
+    protected void onCreate() {
+        if (dataOra == null) {
+            dataOra = LocalDateTime.now();
+        }
     }
 }
