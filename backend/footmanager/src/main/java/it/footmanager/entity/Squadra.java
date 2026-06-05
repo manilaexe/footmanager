@@ -5,22 +5,19 @@ import lombok.*;
 
 @Entity
 @Table(name = "squadra")
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class Squadra {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_squadra")
     private Long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "nome", nullable = false, length = 100)
     private String nome;
 
-    @Column(nullable = false, length = 10)
-    private String stagione = "2024/25";
-
-    @Column(length = 80)
-    private String citta;
-
-    @Column(name = "logo_url", length = 255)
-    private String logoUrl;
+    @Column(name = "categoria", length = 50)
+    private String categoria;
 }
