@@ -5,23 +5,26 @@ import lombok.*;
 
 @Entity
 @Table(name = "badge")
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class Badge {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_badge")
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 80)
+    @Column(name = "nome_badge", nullable = false, length = 100)
     private String nome;
 
-    @Column(length = 255)
+    @Lob
+    @Column(name = "descrizione")
     private String descrizione;
 
-    @Column(length = 10)
-    private String icona;
+    @Column(name = "soglia_punti", nullable = false)
+    private Integer soglia;
 
-    /** Numero risposte corrette necessarie per sbloccare */
-    @Column(nullable = false)
-    private int soglia;
+    @Column(name = "immagine_icona", length = 255)
+    private String icona;
 }
