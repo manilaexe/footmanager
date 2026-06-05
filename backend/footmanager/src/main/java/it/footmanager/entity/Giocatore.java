@@ -1,54 +1,51 @@
 package it.footmanager.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "giocatore")
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class Giocatore {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_giocatore")
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "utente_id", nullable = false, unique = true)
-    private Utente utente;
+    @Column(name = "nome", nullable = false, length = 50)
+    private String nome;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "squadra_id", nullable = false)
-    private Squadra squadra;
+    @Column(name = "cognome", nullable = false, length = 50)
+    private String cognome;
 
-    @Column(name = "numero_maglia")
-    private Integer numeroMaglia;
+    @Column(name = "numero")
+    private Integer numero;
 
-    @Column(name = "ruolo_campo", length = 30)
-    private String ruoloCampo;
+    @Column(name = "img", length = 255)
+    private String img;
 
-    @Column(name = "data_nascita")
-    private LocalDate dataNascita;
+    @Column(name = "piede", length = 10)
+    private String piede;
 
-    @Column(length = 50)
+    @Column(name = "posizione", length = 50)
+    private String posizione;
+
+    @Column(name = "nazionalità", length = 50)
     private String nazionalita;
 
-    @Column(name = "foto_url", length = 255)
-    private String fotoUrl;
+    @Column(name = "altezza")
+    private Integer altezza;
 
-    @Column(name = "punti_totali", nullable = false)
-    private int puntiTotali = 0;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_squadra")
+    private Squadra squadra;
 
-    @Column(name = "punti_sett", nullable = false)
-    private int puntiSett = 0;
-
-    /** Statistiche (relazione 1:1 lazy) */
-    @OneToOne(mappedBy = "giocatore", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Statistiche statistiche;
-
-    /** Badge conquistati */
-    @OneToMany(mappedBy = "giocatore", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<GiocatoreBadge> badges = new ArrayList<>();
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user")
+    private Utente utente;
 }
