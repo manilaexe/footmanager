@@ -2,46 +2,37 @@ package it.footmanager.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "evento")
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class Evento {
-
-    public enum Tipo { ALLENAMENTO, PARTITA, RIUNIONE, ALTRO }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_evento")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "squadra_id", nullable = false)
-    private Squadra squadra;
-
-    @Column(nullable = false, length = 150)
+    @Column(name = "titolo", nullable = false, length = 100)
     private String titolo;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 30)
-    private Tipo tipo;
+    @Column(name = "data_ora_inizio", nullable = false)
+    private LocalDateTime dataOraInizio;
 
-    @Column(name = "data_inizio", nullable = false)
-    private LocalDateTime dataInizio;
+    @Column(name = "data_ora_fine", nullable = false)
+    private LocalDateTime dataOraFine;
 
-    @Column(name = "data_fine")
-    private LocalDateTime dataFine;
+    @Column(name = "tipo", length = 50)
+    private String tipo;
 
-    @Column(length = 200)
+    @Column(name = "luogo", length = 100)
     private String luogo;
 
-    @Column(columnDefinition = "TEXT")
-    private String descrizione;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "creato_da", nullable = false)
-    private Utente creatoDA;
-
-    @Column(name = "creato_il", nullable = false, updatable = false)
-    private LocalDateTime creatoIl = LocalDateTime.now();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_calendar")
+    private Calendario calendario;
 }
