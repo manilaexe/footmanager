@@ -20,12 +20,12 @@ public class Quiz {
     @Column(name = "risposta_corretta", nullable = false, length = 255)
     private String rispostaCorretta;
 
-    @Column(name = "opzione_2", nullable = false, length = 255)
+    @Column(name = "opzione_b", nullable = false, length = 255)
     private String opzione2;
 
-    @Column(name = "opzione_3", nullable = false, length = 255)
+    @Column(name = "opzione_c", nullable = false, length = 255)
     private String opzione3;
 
-    @Column(name = "punti_valore")
+    @Column(name = "punti")
     private int puntiValore = 0;
 }
