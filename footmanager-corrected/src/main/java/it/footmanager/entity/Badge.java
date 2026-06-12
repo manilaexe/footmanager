@@ -19,7 +19,6 @@ public class Badge {
     @Column(name = "soglia_punti")
     private int sogliaPunti = 0;
 
-    // RICONTROLLA IL TIPO
     @Lob
     @Column(name = "icona", columnDefinition = "BLOB")
     private byte[] icona;
