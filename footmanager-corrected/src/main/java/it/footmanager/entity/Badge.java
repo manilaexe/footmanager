@@ -20,6 +20,7 @@ public class Badge {
     private int sogliaPunti = 0;
 
     // RICONTROLLA IL TIPO
-    @Column(name = "icona", length = 255)
-    private String immagineIcona;
+    @Lob
+    @Column(name = "icona", columnDefinition = "BLOB")
+    private byte[] icona;
 }
