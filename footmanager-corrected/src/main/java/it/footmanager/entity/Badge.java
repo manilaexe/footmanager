@@ -16,12 +16,10 @@ public class Badge {
     @Column(name = "nome_badge", nullable = false, length = 100)
     private String nomeBadge;
 
-    @Column(name = "descrizione", columnDefinition = "TEXT")
-    private String descrizione;
-
     @Column(name = "soglia_punti")
     private int sogliaPunti = 0;
 
-    @Column(name = "immagine_icona", length = 255)
+    // RICONTROLLA IL TIPO
+    @Column(name = "icona", length = 255)
     private String immagineIcona;
 }
