@@ -15,9 +15,6 @@ public class Calendario {
     @Column(name = "id_calendar")
     private Integer id;
 
-    @Column(name = "permessi", length = 100)
-    private String permessi;
-
     @OneToMany(mappedBy = "calendario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Evento> eventi = new ArrayList<>();
 }
