@@ -13,7 +13,6 @@ public class Ruolo {
     @Column(name = "id_ruolo")
     private Integer id;
 
-    // Nel DB la colonna si chiama "nome_ruolo"
     @Column(name = "nome_ruolo", nullable = false, length = 50)
     private String nomeRuolo;
 }
