@@ -31,12 +31,23 @@ public class Giocatore {
     @Column(name = "posizione", length = 50)
     private String posizione;
 
-    // Colonna con accento nel DB — usiamo il nome esatto con unicode escape
-    @Column(name = "nazionalit\u00e0", length = 50)
+    @Column(name = "nazionalita", length = 50)
     private String nazionalita;
 
     @Column(name = "altezza")
     private Integer altezza;
+
+    @Column(name = "peso")
+    private Integer peso;
+
+    @Column(name = "punti_settimanali")
+    private Integer punti_settimanali;
+
+    @Column(name = "punti_totali")
+    private Integer punti_totali;
+
+    @Column(name = "data_nascita")
+    private LocalDate dataNascita;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_squadra")
