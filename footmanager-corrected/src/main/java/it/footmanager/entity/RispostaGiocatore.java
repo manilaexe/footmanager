@@ -14,15 +14,15 @@ public class RispostaGiocatore {
     @Column(name = "id_risposta")
     private Integer id;
 
-    @Column(name = "data_risposta", nullable = false)
-    private LocalDateTime dataRisposta;
+    @Column(name = "risposta_data", nullable = false)
+    private LocalDateTime rispostaData;
 
-    @Column(name = "tempo_impiegato_sec")
-    private Integer tempoImpiegatoSec;
+    @Column(name = "secondi_impiegati")
+    private Integer secondiImpiegati;
 
     // Nel DB: "esito" (boolean/tinyint), non "corretta"
-    @Column(name = "esito", nullable = false)
-    private boolean esito;
+    @Column(name = "corretta", nullable = false)
+    private boolean corretta;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_giocatore")
