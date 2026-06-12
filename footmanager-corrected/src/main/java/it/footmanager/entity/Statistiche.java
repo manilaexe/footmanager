@@ -21,7 +21,7 @@ public class Statistiche {
     @Column(name = "presenze_titolare")     private int presenzeTitolare    = 0;
     @Column(name = "minuti_giocati")        private int minutiGiocati       = 0;
     @Column(name = "goal_rigore")           private int goalRigore          = 0;
-    @Column(name = "goal_di_testa")         private int goalDiTesta         = 0;
+    @Column(name = "goal_testa")         private int goalDiTesta         = 0;
     @Column(name = "goal_punizione")        private int goalPunizione       = 0;
     @Column(name = "assist")               private int assist               = 0;
     @Column(name = "tiri_totali")           private int tiriTotali          = 0;
